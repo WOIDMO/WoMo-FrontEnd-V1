@@ -50,7 +50,7 @@ def fetch_chile_deaths(start_date, end_date):
     total_deaths = df['total'].sum()
     north_deaths = df[df['zona'] == 'Norte'].sum()['total']
     central_deaths = df[df['zona'] == 'Central'].sum()['total']
-    south_deaths = df[df['zona'] == 'Sir'].sum()['total']
+    south_deaths = df[df['zona'] == 'Sur'].sum()['total']
     #print(total_deaths)
     return total_deaths, north_deaths, central_deaths, south_deaths
 
