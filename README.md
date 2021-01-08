@@ -15,7 +15,7 @@ For historic mortality data, we exclude the year 2020 and 2021 will also be excl
 The front-end is a Dash app with routes for every region
 The app is hosted on Heroku
 
-The tools directory contains the python scripts to collect and process the data. These are run once per week. (Check the readme in the dir for running order)
+The tools directory contains the python scripts to collect and process the data. These are run once per week. (Check the readme in the tools dir for running order)
 The data directory contains all of the data. There are two files with historic data that need to be unzipped.
 
 **Contributing
