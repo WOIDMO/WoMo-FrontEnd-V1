@@ -40,7 +40,7 @@ def get_start_end_dates(year, week):
 
 def fetch_chile_deaths(start_date, end_date):
     # Import Chile data
-    url = 'https://apirs.srcei.cl/api/estdefuncion/ltAllComunas/'
+    url = 'https://codigo.registrocivil.cl/api/estdefuncion/ltAllComunas/'
     headers = {'Content-type': 'application/json'}
     r = requests.post(url=url, json={'startdate': str(start_date), 'enddate': str(end_date)}, headers=headers)
     #print(r.status_code)
