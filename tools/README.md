@@ -15,3 +15,9 @@
          2) process_EUROSTAT_recent.py
          3) process_EUROSTAT_statistics.py
          
+**Chile
+  fetch_CL_historic.py
+  
+ weekly:
+          1) fetch_CL_recent.py
+          2) process_CL_statistics.py
