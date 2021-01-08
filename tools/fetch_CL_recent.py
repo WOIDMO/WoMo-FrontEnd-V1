@@ -48,14 +48,14 @@ def fetch_chile_deaths(start_date, end_date):
     df = pd.DataFrame.from_dict(data)
     #print(df)
     total_deaths = df['total'].sum()
-    north_deaths = df.query('zona == "Norte"').sum()['total']
-    central_deaths = df.query('zona == "Central"').sum()['total']
-    south_deaths = df.query('zona == "Sur"').sum()['total']
+    north_deaths = df[df['zona'] == 'Norte'].sum()['total']
+    central_deaths = df[df['zona'] == 'Central'].sum()['total']
+    south_deaths = df[df['zona'] == 'Sir'].sum()['total']
     #print(total_deaths)
     return total_deaths, north_deaths, central_deaths, south_deaths
 
 today = datetime.date.today()
-current_week = today.isocalendar()[1] -1
+current_week = today.isocalendar()[1] - 1
 current_year = int(datetime.datetime.now().strftime('%Y'))
 year = current_year
 end_week = 52
