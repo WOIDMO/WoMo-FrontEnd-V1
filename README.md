@@ -7,7 +7,7 @@ The live application can be viewed at: https://www.woidmo.org/home/womo/
 
 **How this works
 
-Excess mortality data avoid miscounting deaths from the under-reporting of Covid-19-related deaths and other health conditions left untreated. Excess mortality is defined as actual deaths from all causes, minus ‘normal’ deaths (historic mortality data). 
+Excess mortality data avoid miscounting deaths from the under-reporting of Covid-19-related deaths and other health conditions left untreated. Excess mortality is defined as actual deaths from all causes, minus ‘normal’ deaths (averaged historic mortality data). 
 For historic mortality data, we exclude the year 2020 and 2021 will also be excluded in the future, since these are years with abnormal mortality. In general, pandemic years are always excluded.
 
 **Practical
