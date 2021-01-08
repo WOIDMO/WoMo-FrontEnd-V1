@@ -22,4 +22,4 @@ The data directory contains all of the data. There are two files with historic d
 
 Anyone can contribute to this project. We welcome others to join and make it better.
 Code refactoring and making minor improvements do not need to be discussed.
-For changing functionality and other major changes, it's best to reach out first.
+For changing functionality and other major changes, it's best to reach out first. Contact us at volunteer@woidmo.org
