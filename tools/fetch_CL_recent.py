@@ -55,49 +55,30 @@ def fetch_chile_deaths(start_date, end_date):
     return total_deaths, north_deaths, central_deaths, south_deaths
 
 today = datetime.date.today()
-current_week = today.isocalendar()[1] - 1
-current_year = int(datetime.datetime.now().strftime('%Y'))
-year = current_year
-end_week = 52
+year = 2020
+current_week = (today - date(year, 1, 1)).days/7
 output = pd.DataFrame()
-
 week = 0
 while (week <= current_week):
     start_date, end_date = get_start_end_dates(year, week)
     total_deaths, north_deaths, central_deaths, south_deaths = fetch_chile_deaths(start_date, end_date)
-    print('Year: '+str(year)+' Week: '+str(week)+' Start date: '+str(start_date)+' End date: '+str(end_date)+' Total deaths: '+str(total_deaths))
-    print('North: '+str(north_deaths)+' Central: '+str(central_deaths)+' South: '+str(south_deaths))
-    #Total
-    d = {'date': end_date,
-         'year': year,
-         'week': week,
-         'jurisdiction': 'Chile',
-         'natural_cause': total_deaths}
-    output = output.append(d, ignore_index=True)
-    #North
-    d = {'date': end_date,
-         'year': year,
-         'week': week,
-         'jurisdiction': 'Chile-North',
-         'natural_cause': north_deaths}
-    output = output.append(d, ignore_index=True)
-    #Central
-    d = {'date': end_date,
-         'year': year,
-         'week': week,
-         'jurisdiction': 'Chile-Central',
-         'natural_cause': central_deaths}
-    output = output.append(d, ignore_index=True)
-    #South
-    d = {'date': end_date,
-         'year': year,
-         'week': week,
-         'jurisdiction': 'Chile-South',
-         'natural_cause': south_deaths}
-    output = output.append(d, ignore_index=True)
-    week = week + 1
-    time.sleep(2)
+    
+    print('Year: %d, Week: %d, Start date: %s, End date: %s' % (int(year), int(week), str(start_date), str(end_date)))
+    print('Total deaths: %d, North: %d, Central: %d, South: %d' % (int(total_deaths), int(north_deaths), int(central_deaths), int(south_deaths)))
+    
+    jurisdiction, deaths = ['Chile', 'Chile-North', 'Chile-Central', 'Chile-South'], [total_deaths, north_deaths, central_deaths, south_deaths]
+    for j, d in zip(jurisdiction, deaths):
+        output = output.append({'date': end_date,
+                        'year': year,
+                        'week': week,
+                        'jurisdiction': j,
+                        'natural_cause': d}, ignore_index=True)
+    week += 1
+    #why was this here?
+    #time.sleep(2)
 
-
+output['year'] = output['year'].astype(int)
+output['week'] = output['week'].astype(int)
+output['natural_cause'] = output['natural_cause'].astype(int)
 output.to_csv("../data/CL_2020.csv", index=False)
 print(output)
