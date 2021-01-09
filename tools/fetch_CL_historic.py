@@ -55,9 +55,9 @@ def fetch_chile_deaths(start_date, end_date):
     return total_deaths, north_deaths, central_deaths, south_deaths
 
 #current_week = datetime.date(2010, 6, 16).isocalendar()[1]
-current_year = int(datetime.datetime.now().strftime('%Y'))
+current_year = int(datetime.datetime.now().year)
 start_year = 2010
-end_year = current_year - 1
+end_year = 2019
 
 year = start_year
 end_week = 52

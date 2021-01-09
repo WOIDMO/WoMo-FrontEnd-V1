@@ -69,13 +69,11 @@ while (week <= current_week):
     jurisdiction, deaths = ['Chile', 'Chile-North', 'Chile-Central', 'Chile-South'], [total_deaths, north_deaths, central_deaths, south_deaths]
     for j, d in zip(jurisdiction, deaths):
         output = output.append({'date': end_date,
-                        'year': year,
-                        'week': week,
+                        'year': end_date.year,
+                        'week': week % 52,
                         'jurisdiction': j,
                         'natural_cause': d}, ignore_index=True)
     week += 1
-    #why was this here?
-    #time.sleep(2)
 
 output['year'] = output['year'].astype(int)
 output['week'] = output['week'].astype(int)
