@@ -34,13 +34,11 @@ data_new['date_col'] = data_new.index #Make things easy
 
 #
 #Process the stats for each jurisdiction
-dfs_stats = []
+all_stats = pd.DataFrame()
 states = data_new.jurisdiction.unique()
 for state in states:
     df_new_state = data_new[data_new.jurisdiction.eq(state)] #Extract data for this state from new
     df_all_state = data_all[data_all.jurisdiction.eq(state)] #Extract data for this state from historic
-
-    print(df_new_state)
     #
     #Generate the stats from the historic data and merge with the new data
     df_stats = pd.DataFrame()
@@ -67,18 +65,14 @@ for state in states:
     df_stats['excess_std2'] = df_stats['natural_cause'] - df_stats['s_mean'] - df_stats['s_std'] - df_stats['s_std']
     df_stats['excess_std2'] = df_stats['excess_std2'].clip(lower=0)
     df_stats['cum_excess_std2'] = df_stats['excess_std2'].cumsum()
-
+    
     df_stats['s_z'] = df_stats['excess'] / df_stats['s_std']
+    
+    all_stats = all_stats.append(df_stats)
 
-    dfs_stats.append(df_stats)
-    #End of states for loop
-
-#
-#Combine all the stats
-stats_all = pd.concat(dfs_stats, ignore_index=True)
 
 #Export to CSV
-stats_all.to_csv (r'../data/CL_stats.csv', header=True, index=False)
+all_stats.to_csv (r'../data/CL_stats.csv', header=True, index=False)
 
 
 #plt.plot(df_all_tmp.mmwrweek, df_all_tmp.all_cause,linewidth=0.5)
