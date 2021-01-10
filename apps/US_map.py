@@ -129,6 +129,10 @@ colors = {
     "background": "#ffffff",
     "text": "#000000"
 }
+style_slider = {'writing-mode': 'vertical-rl','text-orientation': 'use-glyph-orientation','white-space': 'nowrap'}
+slider_dates = {}
+for i, date in date_options.items():
+    slider_dates[i] = {'label':date, 'style':style_slider}
 
 layout = html.Div([
     dcc.Graph(id='map', figure=fig, config=plotcfg),
@@ -137,7 +141,7 @@ layout = html.Div([
         min=0,
         max=weeks-1,
         step=None,
-        marks=date_options,
+        marks=slider_dates,
         value=weeks-3),
     html.Div([html.P("2020")],
              style={'color': '#666',
