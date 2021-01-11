@@ -1,5 +1,5 @@
 #
-#EUROSTAT historic processing
+#EUROSTAT recent processing
 #
 import pandas as pd
 from datetime import date, timedelta
@@ -54,7 +54,7 @@ end_year = 2021
 weeks = 52
 
 today = datetime.date.today()
-max_week = today.isocalendar()[1] - 2
+#max_week = today.isocalendar()[1] - 2
 
 output = pd.DataFrame()
 totalrows = eurostat_df.shape[0] - 1
@@ -64,8 +64,20 @@ row = 0
 while (row <= totalrows):
     while (current_year <= end_year):
         current_week = 1
+        #calculate weeks for the current year
+        if (current_year < end_year):
+            max_week = weeks
+        else:
+            max_week = today.isocalendar()[1]
+
         while(current_week <= max_week):
             col = str(current_year)+"W"+str('{:02}'.format(current_week))
+            #if col doesnt exist in eurostat_df skip processing current week
+            if not col in eurostat_df.columns:
+                current_week += 1
+                print(f"{col} doesn't exist in eurostat_df")
+                continue
+
             start_date, end_date = get_start_end_dates(current_year, current_week) #Find start and end date for this week
             #Process the dataframe here
             ccode = eurostat_df.at[row, 'geo']      #Get the corresponding country name fron the abr
