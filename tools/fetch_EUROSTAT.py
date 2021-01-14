@@ -2,7 +2,9 @@
 #EUROSTAT import
 #
 
+# https://ec.europa.eu/eurostat/cache/metadata/en/demomwk_esms.htm
 # https://ec.europa.eu/eurostat/web/products-datasets/-/demo_r_mweek3
+
 import eurostat
 
 #Import the data from Eurostat
